@@ -3,35 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat App</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>WhatsApp Style Chat</title>
 </head>
 <body>
-    <input type="text" id="room" placeholder="Enter Room">
-    <input type="text" id="message" placeholder="Enter Message">
-    <button id="join">Join Room</button>
-    <button id="send">Send Message</button>
-    <ul id="messages"></ul>
-
+    <div class="chat-container">
+        <div class="chat-header">Chat Room: Default Room</div>
+        <div class="chat-messages" id="messages"></div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your message...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+    
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-
-        document.getElementById('join').addEventListener('click', () => {
-            const room = document.getElementById('room').value;
-            socket.emit('join', room);
-        });
-
-        document.getElementById('send').addEventListener('click', () => {
-            const message = document.getElementById('message').value;
-            const room = document.getElementById('room').value;
-            socket.emit('message', { room, message });
-        });
-
-        socket.on('message', (message) => {
-            const li = document.createElement('li');
-            li.textContent = message;
-            document.getElementById('messages').appendChild(li);
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
